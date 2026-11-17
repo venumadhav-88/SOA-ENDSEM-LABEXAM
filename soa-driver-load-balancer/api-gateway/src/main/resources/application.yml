@@ -1,0 +1,18 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: drivers-route
+          uri: lb://DRIVER-SERVICE
+          predicates:
+            - Path=/drivers/**
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
